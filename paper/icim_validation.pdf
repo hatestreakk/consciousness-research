@@ -1,0 +1,55 @@
+mport matplotlib.pyplot as plt
+import numpy as np
+
+# Данные из таблицы валидации
+systems = ['Human', 'Bottlenose\nDolphin', 'Chimpanzee', 
+          'Elephant', 'New Caledonian\nCrow', 'Octopus']
+icim_scores = [2.45, 2.35, 2.05, 1.95, 1.70, 1.40]
+behavioral_corr = [0.91, 0.87, 0.83, 0.79, 0.74, 0.68]
+confidence = ['High', 'Medium-High', 'Medium-High', 'Medium', 'Medium', 'Low-Medium']
+
+colors = ['#2E86AB', '#A23B72', '#F18F01', '#C73E1D', '#3F7CAC', '#6B8F71']
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+
+# График ICIM scores
+bars = ax1.bar(range(len(systems)), icim_scores, color=colors, alpha=0.8)
+ax1.axhline(y=2.4, color='red', linestyle='--', linewidth=2, 
+           label='Full Consciousness Threshold')
+ax1.axhline(y=1.8, color='orange', linestyle='--', linewidth=2,
+           label='Basic Consciousness Threshold')
+ax1.axhline(y=1.2, color='yellow', linestyle='--', linewidth=2,
+           label='Minimal Awareness Threshold')
+
+# Добавляем значения на столбцы
+for i, (bar, score) in enumerate(zip(bars, icim_scores)):
+    height = bar.get_height()
+    ax1.text(bar.get_x() + bar.get_width()/2., height + 0.05,
+            f'{score:.2f}', ha='center', va='bottom', fontweight='bold')
+
+ax1.set_xticks(range(len(systems)))
+ax1.set_xticklabels(systems, rotation=45)
+ax1.set_ylabel('ICIM Score', fontsize=12)
+ax1.set_title('Consciousness Assessment Across Species', fontsize=14, fontweight='bold')
+ax1.legend()
+ax1.grid(True, alpha=0.3, axis='y')
+
+# График behavioral correlation
+ax2.scatter(icim_scores, behavioral_corr, s=100, c=colors, alpha=0.8)
+for i, (sys, icim, corr) in enumerate(zip(systems, icim_scores, behavioral_corr)):
+    ax2.annotate(sys, (icim, corr), xytext=(5, 5), 
+                textcoords='offset points', fontsize=9)
+
+# Линия тренда
+z = np.polyfit(icim_scores, behavioral_corr, 1)
+p = np.poly1d(z)
+ax2.plot(np.array(icim_scores), p(np.array(icim_scores)), "r--", alpha=0.8)
+
+ax2.set_xlabel('ICIM Score', fontsize=12)
+ax2.set_ylabel('Behavioral Correlation', fontsize=12)
+ax2.set_title('ICIM Validation: Correlation with Behavior', fontsize=14, fontweight='bold')
+ax2.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('paper/figures/icim_validation.pdf', bbox_inches='tight', dpi=300)
+plt.close()
