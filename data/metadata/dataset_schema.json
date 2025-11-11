@@ -1,0 +1,68 @@
+{
+  "dataset_schema": {
+    "description": "Schema for consciousness research datasets",
+    "version": "1.0",
+    "created": "2025-11-01",
+    
+    "required_columns": {
+      "subject_id": {
+        "type": "string",
+        "description": "Unique identifier for each system/participant",
+        "example": "human_001, gpt4_001, dolphin_001"
+      },
+      "system_type": {
+        "type": "categorical",
+        "categories": ["human", "ai", "primate", "cetacean", "avian", "clinical"],
+        "description": "Type of conscious system being studied"
+      },
+      "timestamp": {
+        "type": "datetime",
+        "description": "Date and time of measurement",
+        "format": "YYYY-MM-DD HH:MM:SS"
+      },
+      "icim_score": {
+        "type": "float",
+        "range": [0.0, 5.0],
+        "description": "Integrated Complexity of Internal Models score"
+      }
+    },
+    
+    "optional_columns": {
+      "consciousness_level": {
+        "type": "categorical", 
+        "categories": ["minimal_awareness", "basic_consciousness", "full_consciousness", "enhanced_integration"],
+        "description": "Expert assessment of consciousness level"
+      },
+      "behavioral_correlation": {
+        "type": "float",
+        "range": [0.0, 1.0],
+        "description": "Correlation with behavioral consciousness measures"
+      },
+      "entropy_baseline": {
+        "type": "float",
+        "description": "Baseline psychological entropy S_0"
+      },
+      "entropy_variance": {
+        "type": "float",
+        "description": "Variance in entropy measurements"
+      },
+      "recursive_depth": {
+        "type": "float",
+        "range": [0.0, 1.0],
+        "description": "Recursive depth component of ICIM"
+      },
+      "information_integration": {
+        "type": "float", 
+        "range": [0.0, 1.0],
+        "description": "Information integration component of ICIM"
+      }
+    },
+    
+    "validation_rules": {
+      "icim_score_range": "0.0 <= icim_score <= 5.0",
+      "behavioral_correlation_range": "0.0 <= behavioral_correlation <= 1.0",
+      "required_columns_present": "subject_id, system_type, timestamp, icim_score must be present",
+      "unique_subject_ids": "subject_id must be unique within dataset"
+    }
+  }
+}
