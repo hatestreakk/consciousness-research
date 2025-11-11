@@ -1,12 +1,6 @@
 """
 Data Analysis Toolkit for Consciousness Research
 Statistical analysis and validation tools for RAC theory
-
-Includes:
-- Statistical validation of ICIM metric
-- Cross-system comparative analysis
-- Model parameter estimation
-- Hypothesis testing
 """
 
 import numpy as np
@@ -17,7 +11,7 @@ from scipy import stats
 from scipy.optimize import curve_fit
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.model_selection import cross_val_score, train_test_split
-from typing import Dict, List, Tuple, Optional, Any
+from typing import Dict, List, Tuple, Optional, Any, Union
 import warnings
 import json
 from pathlib import Path
