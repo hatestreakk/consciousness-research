@@ -1,1 +1,121 @@
-touch .gitignore
+# =================================
+# Python
+# =================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+env/
+.venv/
+.ipynb_checkpoints
+*.ipynb
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =================================
+# LaTeX
+# =================================
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.bcf
+*.run.xml
+*~
+*.backup
+
+# =================================
+# Data Science / Machine Learning
+# =================================
+*.csv
+*.xlsx
+*.json
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.pt
+*.pth
+*.bin
+*.safetensors
+models/
+checkpoints/
+logs/
+*.log
+wandb/
+mlruns/
+tensorboard/
+lightning_logs/
+
+# =================================
+# IDE and Editor
+# =================================
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+*.swp
+*.swo
+.*.swp
+.*.swo
+
+# =================================
+# OS Generated Files
+# =================================
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+
+# =================================
+# Project Specific
+# =================================
+.env
+.env.local
+config.local.yaml
+credentials.json
+temp/
+tmp/
+*.tmp
+*.temp
+backup/
+*.bak
+*.backup
+figures/generated/
+plots/temp/
+*.png
+*.jpg
+*.pdf
+*.svg
+docs/_build/
+site/
