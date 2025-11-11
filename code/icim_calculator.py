@@ -1,15 +1,13 @@
 """
 ICIM (Integrated Complexity of Internal Models) Calculator
 Implementation of the consciousness assessment metric from RAC theory
-
-Formula: ICIM = 0.30*D(SG) + 0.25*RDL + 0.30*D_KL + 0.15*CEM
 """
 
 import numpy as np
 import networkx as nx
 from scipy import stats
 from scipy.spatial.distance import jensenshannon
-from typing import Dict, List, Union, Optional
+from typing import Dict, List, Optional, Any, Union
 import warnings
 import json
 
