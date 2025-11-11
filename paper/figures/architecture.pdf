@@ -1,0 +1,56 @@
+# paper/create_figures.py
+import matplotlib.pyplot as plt
+import numpy as np
+import matplotlib.patches as patches
+
+# Создаем архитектурную схему
+fig, ax = plt.subplots(1, 1, figsize=(12, 8))
+
+# Определяем позиции модулей
+modules = {
+    'Input\nProcessing': (1, 6),
+    'Subconscious\n(P_sub)': (3, 4), 
+    'Conscious\n(P_con)': (5, 6),
+    'Meta-Cognitive\n(P_meta)': (7, 4),
+    'Output\nGeneration': (9, 6)
+}
+
+# Рисуем модули
+for name, (x, y) in modules.items():
+    rect = patches.Rectangle((x-0.8, y-0.8), 1.6, 1.6, 
+                           linewidth=2, edgecolor='navy', 
+                           facecolor='lightblue', alpha=0.7)
+    ax.add_patch(rect)
+    ax.text(x, y, name, ha='center', va='center', 
+            fontsize=10, fontweight='bold')
+
+# Рисуем связи с рекурсивной обратной связью
+connections = [
+    ((1, 6), (3, 6)),  # Input -> Subconscious
+    ((3, 6), (5, 4)),  # Subconscious -> Conscious  
+    ((5, 6), (7, 6)),  # Conscious -> Meta
+    ((7, 6), (9, 6)),  # Meta -> Output
+    ((5, 4), (3, 4)),  # Conscious -> Subconscious (feedback)
+    ((7, 4), (5, 4)),  # Meta -> Conscious (feedback)
+]
+
+for (x1, y1), (x2, y2) in connections:
+    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle="->", 
+                              color="red", 
+                              lw=2,
+                              alpha=0.7))
+
+ax.text(5, 7, 'RESONANCE ARCHITECTURE OF CONSCIOUSNESS', 
+        ha='center', va='center', fontsize=14, fontweight='bold')
+ax.text(5, 0.5, 'Recursive feedback loops enable conscious experience',
+        ha='center', va='center', fontsize=10, style='italic')
+
+ax.set_xlim(0, 10)
+ax.set_ylim(0, 8)
+ax.set_aspect('equal')
+ax.axis('off')
+
+plt.tight_layout()
+plt.savefig('paper/figures/architecture.pdf', bbox_inches='tight', dpi=300)
+plt.close()
